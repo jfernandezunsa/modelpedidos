@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header('Location: login.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,7 +27,7 @@
             <div><span class="material-icons text-secundario text-8xl">menu</span></div>
         </div>
     </div>
-    <div class="container mx-auto p-4 max-w-2xl mx-auto ">
+    <div class="container mx-auto p-4 max-w-2xl">
         <div class="flex items-center mb-6 mt-2">
             <span class="material-icons text-destacado text-8xl material-symbols-outlined">arrow_circle_right</span>
             <span class="pl-2">Registro de formatos</span>
@@ -122,7 +130,7 @@
             </div>
             <!-- Empresa -->
             <div class="mb-4">
-                <label for="form_empresa" class="block text-sm mb-1 ">Copias por Juego</label>
+                <label for="form_empresa" class="block text-sm mb-1 ">Seleccionar empresa</label>
                 <select id="form_empresa" name="form_empresa" required
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-advertencia bg-black/30">
                     <option class="bg-gray-600" value="" disabled selected>Seleccione...</option>

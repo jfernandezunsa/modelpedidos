@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header('Location: src/login.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,7 +23,7 @@
 <body class="font-roboto bg-black/65 text-white">
     <?php
     require 'conexion.php'; // Asegúrate de que la ruta sea correcta
-    
+
     // Consulta a la base de datos
     $sql = "SELECT * FROM empresas";
     $resultado = $conn->query($sql);
@@ -27,16 +35,16 @@
             <div><span class="material-icons text-secundario text-4xl">menu</span></div>
         </div>
     </div>
-    
+
     <div class="container p-4 max-w-2xl mx-auto">
         <div class="flex items-center mb-6 mt-2">
             <span class="material-icons text-destacado text-4xl">arrow_circle_right</span>
             <span class="pl-2">Reporte de Empresas</span>
         </div>
-        
+
         <div class="max-w-2xl mx-auto p-6 bg-black/25 rounded-lg shadow-md">
             <h4 class="mb-4">Datos de la empresa</h4>
-            
+
             <!-- Buscador -->
             <div class="form-group text-white/70 mb-4">
                 <label for="nom_empresa" class="block text-sm mb-2">Buscar empresa</label>
@@ -50,11 +58,11 @@
                     </button>
                 </div>
             </div>
-            
+
             <h4 class="mb-4">Resultados de la Búsqueda</h4>
             <div id="resp_busq_empresas">
                 <?php if ($resultado->num_rows > 0): ?>
-                    <?php while($empresa = $resultado->fetch_assoc()): ?>
+                    <?php while ($empresa = $resultado->fetch_assoc()): ?>
                         <div class="flex justify-between items-center mb-4 border-b border-gray-300 pb-5">
                             <div>
                                 <h5><?php echo htmlspecialchars($empresa['nom_empresa']); ?></h5>
@@ -64,7 +72,7 @@
                             </div>
                             <div>
                                 <a href="editar_empresa.php?id=<?php echo $empresa['id']; ?>"
-                                   class="bg-complemento w-10 h-10 rounded-lg flex items-center justify-center cursor-pointer hover:bg-destacado transition duration-300">
+                                    class="bg-complemento w-10 h-10 rounded-lg flex items-center justify-center cursor-pointer hover:bg-destacado transition duration-300">
                                     <span class="material-icons text-white">edit</span>
                                 </a>
                             </div>
@@ -78,14 +86,15 @@
     </div>
 
     <script>
-    function buscarEmpresas() {
-        const busqueda = document.getElementById('busqueda').value;
-        fetch(`buscar_empresas.php?q=${encodeURIComponent(busqueda)}`)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('resp_busq_empresas').innerHTML = data;
-            });
-    }
+        function buscarEmpresas() {
+            const busqueda = document.getElementById('busqueda').value;
+            fetch(`buscar_empresas.php?q=${encodeURIComponent(busqueda)}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('resp_busq_empresas').innerHTML = data;
+                });
+        }
     </script>
 </body>
+
 </html>

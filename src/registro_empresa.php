@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header('Location: src/login.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -39,7 +47,7 @@
             <!-- RUC -->
             <div class="form-group text-white/70 mb-4">
                 <label for="RUC" class="block text-sm mb-2">
-                    Número de RUC 
+                    Número de RUC
                 </label>
                 <input type="text" id="RUC" name="RUC" required
                     class="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-1 focus:ring-advertencia bg-black/30"
@@ -48,13 +56,13 @@
             <!-- Lugar de entrega -->
             <div class="form-group text-white/70 mb-4">
                 <label for="lugares_entrega" class="block text-sm mb-2">
-                    Lugares de entrega 
+                    Lugares de entrega
                 </label>
                 <input type="text" id="lugares_entrega" name="lugares_entrega" required
                     class="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-1 focus:ring-advertencia bg-black/30"
                     placeholder="...">
             </div>
-<!--             <div class="flex justify-end mb-4">
+            <!--             <div class="flex justify-end mb-4">
                 <button type="button"
                 class="w-12 bg-complemento text-white py-2 px-4 rounded-md hover:bg-destacado transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-destacado">
                 +
@@ -90,7 +98,7 @@
                     class="w-full p-2 border border-gray-400 rounded focus:outline-none focus:ring-1 focus:ring-advertencia bg-black/30"
                     placeholder="...">
             </div>
-<!--             <div class="flex justify-end mb-4">
+            <!--             <div class="flex justify-end mb-4">
                 <button type="button"
                 class="w-12 bg-complemento text-white py-2 px-4 rounded-md hover:bg-destacado transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-destacado">
                 +
