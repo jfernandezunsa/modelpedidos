@@ -1,10 +1,14 @@
 <?php
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+//require 'conexion.php';
 if (!isset($_SESSION['usuario'])) {
     header('Location: login.php');
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -32,7 +36,7 @@ if (!isset($_SESSION['usuario'])) {
             <span class="material-icons text-destacado text-8xl material-symbols-outlined">arrow_circle_right</span>
             <span class="pl-2">Registro de formatos</span>
         </div>
-        <form action="procesar.php" method="POST" enctype="multipart/form-data"
+        <form action="procesar_formato.php" method="POST" enctype="multipart/form-data"
             class="max-w-2xl mx-auto p-6 bg-black/25 rounded-lg shadow-md">
             <!-- Titulo -->
             <div class="form-group text-white/70 mb-4">
@@ -58,7 +62,7 @@ if (!isset($_SESSION['usuario'])) {
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-advertencia bg-black/30">
                     <option class="bg-gray-600" value="" disabled selected>Seleccione...</option>
                     <option class="bg-gray-600" value="A6">A6 (10.5cm x 14.7cm)</option>
-                    <option class="bg-gray-600" value="A5">A4 (14.7cm x 21cm)</option>
+                    <option class="bg-gray-600" value="A5">A5 (14.7cm x 21cm)</option>
                     <option class="bg-gray-600" value="A4">A4 (21cm x 29.7cm)</option>
                     <option class="bg-gray-600" value="Carta">Carta (21.6cm x 27.9cm)</option>
                     <option class="bg-gray-600" value="Oficio">Oficio (21.6cm x 35.6cm)</option>
@@ -89,17 +93,17 @@ if (!isset($_SESSION['usuario'])) {
                         <span class="ml-2">Numeración</span>
                     </label>
                     <label class="inline-flex items-center">
-                        <input type="checkbox" name="acabados[]" value="numeracion"
+                        <input type="checkbox" name="acabados[]" value="anillado"
                             class="h-4 w-4 text-azul-oscuro focus:ring-destacado border-gray-300 rounded">
                         <span class="ml-2">Anillado</span>
                     </label>
                     <label class="inline-flex items-center">
-                        <input type="checkbox" name="acabados[]" value="numeracion"
+                        <input type="checkbox" name="acabados[]" value="enmicado"
                             class="h-4 w-4 text-azul-oscuro focus:ring-destacado border-gray-300 rounded">
                         <span class="ml-2">Enmicado</span>
                     </label>
                     <label class="inline-flex items-center">
-                        <input type="checkbox" name="acabados[]" value="numeracion"
+                        <input type="checkbox" name="acabados[]" value="plastificado"
                             class="h-4 w-4 text-azul-oscuro focus:ring-destacado border-gray-300 rounded">
                         <span class="ml-2">Plastificado</span>
                     </label>
@@ -129,16 +133,18 @@ if (!isset($_SESSION['usuario'])) {
                     placeholder="00.000.00">
             </div>
             <!-- Empresa -->
+            <?php
+            require 'conexion.php';
+            $query = "SELECT id, nom_empresa FROM empresas WHERE activa = 1";
+            $result = $conn->query($query);
+            ?>
             <div class="mb-4">
                 <label for="form_empresa" class="block text-sm mb-1 ">Seleccionar empresa</label>
                 <select id="form_empresa" name="form_empresa" required
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-advertencia bg-black/30">
-                    <option class="bg-gray-600" value="" disabled selected>Seleccione...</option>
-                    <option class="bg-gray-600" value="aaaa">aaaa</option>
-                    <option class="bg-gray-600" value="bbbbbb">bbbbbb</option>
-                    <option class="bg-gray-600" value="ccccccc">ccccccc</option>
-                    <option class="bg-gray-600" value="ddddd">ddddd</option>
-                    <option class="bg-gray-600" value="eeeee">eeeee</option>
+                    <?php while ($empresa = $result->fetch_assoc()): ?>
+                        <option class="bg-gray-600" value="<?= $empresa['id'] ?>"><?= htmlspecialchars($empresa['nom_empresa']) ?></option>
+                    <?php endwhile; ?>
                 </select>
             </div>
             <!-- Botón -->
