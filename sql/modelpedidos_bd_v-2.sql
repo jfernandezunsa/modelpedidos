@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-07-2025 a las 06:50:51
+-- Tiempo de generación: 18-07-2025 a las 00:18:57
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -55,30 +55,6 @@ CREATE TABLE `archivos_formatos` (
   `nombre_archivo` varchar(255) NOT NULL,
   `ruta_archivo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `archivos_formatos`
---
-
-INSERT INTO `archivos_formatos` (`id`, `formato_id`, `tipo`, `nombre_archivo`, `ruta_archivo`) VALUES
-(1, 2, 'edicion', 'actual-server-permisos.jpg', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(2, 2, 'visualizacion', 'trabajo_final.pdf', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(3, 2, 'edicion', 'actual-server-permisos.jpg', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(4, 2, 'visualizacion', 'trabajo_final.pdf', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(5, 3, 'edicion', 'actual-server-permisos.jpg', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(6, 3, 'visualizacion', 'trabajo_final.pdf', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(7, 3, 'edicion', 'actual-server-permisos.jpg', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(8, 3, 'visualizacion', 'trabajo_final.pdf', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(21, 5, 'edicion', '', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(22, 5, 'visualizacion', '', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(25, 6, 'edicion', '', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(26, 6, 'visualizacion', '', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(29, 4, 'edicion', '', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(30, 4, 'visualizacion', '', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(31, 7, 'edicion', 'actual-server-permisos.jpg', ''),
-(32, 7, 'visualizacion', 'trabajo_final.pdf', ''),
-(33, 7, 'edicion', 'actual-server-permisos.jpg', ''),
-(34, 7, 'visualizacion', 'trabajo_final.pdf', '');
 
 -- --------------------------------------------------------
 
@@ -134,20 +110,6 @@ CREATE TABLE `formatos` (
   `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `formatos`
---
-
-INSERT INTO `formatos` (`id`, `titulo`, `descripcion`, `dimensiones`, `copias_por_juego`, `version`, `empresa_id`, `fecha_creacion`) VALUES
-(1, 'Vale de consumo', 'formato color negro ', 'A5', 1, 'v-01', 5, '2025-07-17 22:39:06'),
-(2, 'Vale de consumo', 'formato color negro ', 'A5', 1, 'v-01', 5, '2025-07-17 22:49:21'),
-(3, 'kardex', 'color amarillo, cartulina escolar', 'A6', 1, 'v01', 10, '2025-07-17 22:56:05'),
-(4, 'control almacen v22', 'formato cambio', 'A4', 2, '01', 5, '2025-07-17 23:02:26'),
-(5, 'ticket consumo 33', 'papel quimico, impresion color azul', 'A5', 1, '01', 8, '2025-07-17 23:04:23'),
-(6, 'Checlist volquete 2', 'Original, copia verde, copia amarilla, block de 100 juegos', 'A5', 2, '01', 8, '2025-07-18 00:16:34'),
-(7, 'reporte trabajo de campo', 'documento donde varian usualmento nombres de los tecnicos participantes', 'A5', 1, '2', 8, '2025-07-18 03:40:39'),
-(8, 'tractor oruga 003 cambio', 'doble formato medio', 'A4', 2, '335', 8, '2025-07-18 03:51:04');
-
 -- --------------------------------------------------------
 
 --
@@ -158,20 +120,6 @@ CREATE TABLE `formatos_acabados` (
   `formato_id` int(11) NOT NULL,
   `acabado_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `formatos_acabados`
---
-
-INSERT INTO `formatos_acabados` (`formato_id`, `acabado_id`) VALUES
-(1, 1),
-(2, 1),
-(3, 1),
-(4, 1),
-(5, 1),
-(7, 2),
-(8, 1),
-(8, 2);
 
 -- --------------------------------------------------------
 
@@ -253,7 +201,7 @@ ALTER TABLE `acabados`
 -- AUTO_INCREMENT de la tabla `archivos_formatos`
 --
 ALTER TABLE `archivos_formatos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `empresas`
@@ -265,7 +213,7 @@ ALTER TABLE `empresas`
 -- AUTO_INCREMENT de la tabla `formatos`
 --
 ALTER TABLE `formatos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
