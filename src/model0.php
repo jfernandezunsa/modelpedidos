@@ -13,12 +13,21 @@
 </head>
 
 <body class="font-roboto bg-black/65 text-white">
-    <div class="bg-gray-100">
+    <?php include 'header.php'; ?>
+
+    <!--     <div class="bg-gray-100">
         <div class="mx-auto p-4 flex justify-between">
             <div><img src="/modelpedidos/public/images/logo-atlanta.png" alt="" class="h-5"></div>
             <div><span class="material-icons text-secundario text-4xl">menu</span></div>
         </div>
-    </div>
+        <div class="absolute right-0 top-15">
+            <ul>
+                <li class=" px-4 py-2 bg-white/60 hover:bg-gray-200 border-b border-destacado w-52"><a href="#" class="text-secundario block">Inicio</a></li>
+                <li class=" px-4 py-2 bg-white/60 hover:bg-gray-200 border-b border-destacado w-52"><a href="#" class="text-secundario block">Item 01</a></li>
+                <li class=" px-4 py-2 bg-white/60 hover:bg-gray-200 border-b border-destacado w-52"><a href="#" class="text-secundario block">Item 02</a></li>
+            </ul>
+        </div>
+    </div> -->
 
     <div class="container p-4 max-w-2xl mx-auto">
         <div class="flex items-center mb-6 mt-2">

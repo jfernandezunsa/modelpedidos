@@ -13,12 +13,13 @@
 </head>
 
 <body class="font-roboto bg-black/65 text-white">
-    <div class="bg-gray-100">
+    <!--     <div class="bg-gray-100">
         <div class="mx-auto p-4 flex justify-between">
             <div><img src="/modelpedidos/public/images/logo-atlanta.png" alt="" class="h-5"></div>
             <div><span class="material-icons text-secundario text-8xl">menu</span></div>
         </div>
-    </div>
+    </div> -->
+    <?php include 'header.php'; ?>
     <div class="container mx-auto p-4 max-w-2xl">
         <div class="flex items-center mb-6 mt-2">
             <span class="material-icons text-destacado text-8xl material-symbols-outlined">check</span>

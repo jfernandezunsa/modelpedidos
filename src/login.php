@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($usuario && password_verify($password, $usuario['password_hash'])) {
         $_SESSION['usuario'] = $usuario;
-        header('Location: reporte_empresas.php');
+        header('Location: registro_pedidos.php');
         exit;
     } else {
         $error = "Usuario o contraseña incorrectos";

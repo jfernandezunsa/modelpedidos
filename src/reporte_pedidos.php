@@ -2,6 +2,9 @@
 session_start();
 require 'conexion.php';
 
+include 'mensajes.php';
+
+
 // Verificar sesión y obtener usuario_id
 if (!isset($_SESSION['usuario_id'])) {
   header('Location: login.php');

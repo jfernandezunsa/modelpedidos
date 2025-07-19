@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-07-2025 a las 19:22:26
+-- Tiempo de generación: 18-07-2025 a las 06:50:51
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -75,10 +75,10 @@ INSERT INTO `archivos_formatos` (`id`, `formato_id`, `tipo`, `nombre_archivo`, `
 (26, 6, 'visualizacion', '', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
 (29, 4, 'edicion', '', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
 (30, 4, 'visualizacion', '', 'http://localhost/modelpedidos/src/reporte_formatos.php'),
-(39, 9, 'edicion', 'error.jpg', ''),
-(40, 9, 'visualizacion', 'trabajo_final.pdf', ''),
-(41, 9, 'edicion', 'error.jpg', ''),
-(42, 9, 'visualizacion', 'trabajo_final.pdf', '');
+(31, 7, 'edicion', 'actual-server-permisos.jpg', ''),
+(32, 7, 'visualizacion', 'trabajo_final.pdf', ''),
+(33, 7, 'edicion', 'actual-server-permisos.jpg', ''),
+(34, 7, 'visualizacion', 'trabajo_final.pdf', '');
 
 -- --------------------------------------------------------
 
@@ -115,8 +115,7 @@ INSERT INTO `empresas` (`id`, `nom_empresa`, `RUC`, `lugares_entrega`, `nom_comp
 (8, 'cotrans s.a.', '123545678', NULL, 'jorge fernandez', NULL, NULL, '2025-07-16 23:57:07', NULL, NULL, 1),
 (9, 'Ratas y Ratones SAC', '232323', 'Av.Aviación 525', 'Mr.Rats', '123456789', 'rats@rats.com', '2025-07-17 00:04:20', NULL, NULL, 1),
 (10, 'Nueva empresa', '342343', 'Cerro Colorado', 'Rosario', '123456789', 'rosario@prueba.com', '2025-07-17 00:17:41', NULL, NULL, 1),
-(11, 'prueba 005', '12345678', 'arequipa', 'joseluis', '123456789', 'prueba005@qwe.com', '2025-07-17 00:26:07', NULL, NULL, 1),
-(12, 'Next logist', '123456', 'av. canada 333', 'Fiorella Martinez', '123456', 'fio@next.com', '2025-07-19 15:56:51', NULL, NULL, 1);
+(11, 'prueba 005', '12345678', 'arequipa', 'joseluis', '123456789', 'prueba005@qwe.com', '2025-07-17 00:26:07', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -146,9 +145,8 @@ INSERT INTO `formatos` (`id`, `titulo`, `descripcion`, `dimensiones`, `copias_po
 (4, 'control almacen v22', 'formato cambio', 'A4', 2, '01', 5, '2025-07-17 23:02:26'),
 (5, 'ticket consumo 33', 'papel quimico, impresion color azul', 'A5', 1, '01', 8, '2025-07-17 23:04:23'),
 (6, 'Checlist volquete 2', 'Original, copia verde, copia amarilla, block de 100 juegos', 'A5', 2, '01', 8, '2025-07-18 00:16:34'),
-(7, 'reporte trabajo de campo', 'documento donde varian usualmento nombres de los tecnicos participantes', 'A5', 2, '2', 8, '2025-07-18 03:40:39'),
-(8, 'tractor oruga 003 cambio', 'doble formato medio', 'A4', 2, '335', 8, '2025-07-18 03:51:04'),
-(9, 'Recibo de Egresos', 'Color azul, con perforado', 'A6', 2, 'v001', 9, '2025-07-19 16:00:11');
+(7, 'reporte trabajo de campo', 'documento donde varian usualmento nombres de los tecnicos participantes', 'A5', 1, '2', 8, '2025-07-18 03:40:39'),
+(8, 'tractor oruga 003 cambio', 'doble formato medio', 'A4', 2, '335', 8, '2025-07-18 03:51:04');
 
 -- --------------------------------------------------------
 
@@ -173,37 +171,7 @@ INSERT INTO `formatos_acabados` (`formato_id`, `acabado_id`) VALUES
 (5, 1),
 (7, 2),
 (8, 1),
-(8, 2),
-(9, 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pedidos`
---
-
-CREATE TABLE `pedidos` (
-  `id` int(11) NOT NULL,
-  `empresa_id` int(11) NOT NULL,
-  `fecha_pedido` timestamp NOT NULL DEFAULT current_timestamp(),
-  `estado` enum('pendiente','en_proceso','terminado','entregado') NOT NULL DEFAULT 'pendiente',
-  `observaciones_generales` text DEFAULT NULL,
-  `usuario_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pedidos_items`
---
-
-CREATE TABLE `pedidos_items` (
-  `id` int(11) NOT NULL,
-  `pedido_id` int(11) NOT NULL,
-  `formato_id` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `observaciones` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(8, 2);
 
 -- --------------------------------------------------------
 
@@ -265,22 +233,6 @@ ALTER TABLE `formatos_acabados`
   ADD KEY `acabado_id` (`acabado_id`);
 
 --
--- Indices de la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `empresa_id` (`empresa_id`),
-  ADD KEY `usuario_id` (`usuario_id`);
-
---
--- Indices de la tabla `pedidos_items`
---
-ALTER TABLE `pedidos_items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `pedido_id` (`pedido_id`),
-  ADD KEY `formato_id` (`formato_id`);
-
---
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -301,31 +253,19 @@ ALTER TABLE `acabados`
 -- AUTO_INCREMENT de la tabla `archivos_formatos`
 --
 ALTER TABLE `archivos_formatos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `empresas`
 --
 ALTER TABLE `empresas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `formatos`
 --
 ALTER TABLE `formatos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT de la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `pedidos_items`
---
-ALTER TABLE `pedidos_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -355,20 +295,6 @@ ALTER TABLE `formatos`
 ALTER TABLE `formatos_acabados`
   ADD CONSTRAINT `formatos_acabados_ibfk_1` FOREIGN KEY (`formato_id`) REFERENCES `formatos` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `formatos_acabados_ibfk_2` FOREIGN KEY (`acabado_id`) REFERENCES `acabados` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `empresas` (`id`),
-  ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
-
---
--- Filtros para la tabla `pedidos_items`
---
-ALTER TABLE `pedidos_items`
-  ADD CONSTRAINT `pedidos_items_ibfk_1` FOREIGN KEY (`pedido_id`) REFERENCES `pedidos` (`id`),
-  ADD CONSTRAINT `pedidos_items_ibfk_2` FOREIGN KEY (`formato_id`) REFERENCES `formatos` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
